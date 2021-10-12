@@ -1,4 +1,5 @@
 # import socket module
+# See InClass_2 for server creation
 from socket import *
 
 # In order to terminate the program. Not necessary.
