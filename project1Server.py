@@ -59,7 +59,7 @@ while True:
             "HTTP/1.1 404 Not Found\r\n\r\n".encode()
         )
         connectionSocket.close(
-            "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n"
+            "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n".encode()
         )
 
         # Close the client connection socket
