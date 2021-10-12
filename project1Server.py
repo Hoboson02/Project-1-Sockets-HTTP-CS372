@@ -27,7 +27,7 @@ while True:
     # the except clause is executed
     try:
         # Receives the request
-        message = connectionSocket.recv(1024)
+        message = connectionSocket.recv(1024).decode()
         print("Received:", message)
         # Extract the path of the requested object from the message
         # The path is the second part of HTTP header, identified by [1]
@@ -49,15 +49,15 @@ while True:
             connectionSocket.send(outputdata[i].encode())
 
         connectionSocket.send("\r\n".encode())
-
+        # Close the client connection socket
+        connectionSocket.close()
     except IOError:
         print('  *** file not found ***')
         # Send HTTP response message for file not found
         connectionSocket.send(
             "HTTP/1.1 404 Not Found\r\n\r\n".encode()
         )
-        # Close the client connection socket
-        connectionSocket.close(
+        connectionSocket.send(
             "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n".encode()
         )
 
