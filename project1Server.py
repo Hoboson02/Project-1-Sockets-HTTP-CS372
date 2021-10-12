@@ -50,15 +50,13 @@ while True:
 
         connectionSocket.send("\r\n".encode())
 
-        # Close the client connection socket
-        connectionSocket.close()
-
     except IOError:
         print('  *** file not found ***')
         # Send HTTP response message for file not found
         connectionSocket.send(
             "HTTP/1.1 404 Not Found\r\n\r\n".encode()
         )
+        # Close the client connection socket
         connectionSocket.close(
             "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n".encode()
         )
